@@ -9,6 +9,8 @@ import com.springframework.didemo.controllers.ConstructorInjectedController;
 import com.springframework.didemo.controllers.GetterInjectedController;
 import com.springframework.didemo.controllers.MyController;
 import com.springframework.didemo.controllers.PropertyInjectedController;
+import com.springframework.didemo.examplebeans.FakeDataSource;
+import com.springframework.didemo.examplebeans.JMSBroker;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.springframework.didemo.services", "com.springframework.didemo.controllers"
@@ -25,5 +27,12 @@ public class DiDemoApplication {
 		System.out.println(ctx.getBean(PropertyInjectedController.class).sayHello());
 		System.out.println(ctx.getBean(GetterInjectedController.class).sayHello());
 		System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
+		
+		FakeDataSource f = (FakeDataSource) ctx.getBean("fakeDataSource");
+		System.out.println(f.getPassword());
+		System.out.println(f.getEnvname());
+		
+		JMSBroker j = (JMSBroker) ctx.getBean("fakeJmsBroker");
+		System.out.println(j.getUser());
 	}
 }
